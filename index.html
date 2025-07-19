@@ -27,17 +27,17 @@
         text-align: center;
       }
 
-      .text {
-        font-size: clamp(1.2rem, 5vw, 2rem);
-        line-height: 1.4;
+      .line {
+        font-size: clamp(1.3rem, 5vw, 2rem);
         text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-        max-width: 90%;
-        word-wrap: break-word;
+        margin: 5px 0;
+        white-space: pre-wrap; /* Respetar espacios */
       }
 
       .char {
         opacity: 0;
         animation: showChar 0.05s forwards;
+        display: inline-block;
       }
 
       @keyframes showChar {
@@ -91,19 +91,39 @@
     </style>
   </head>
   <body>
-    <div class="text" id="typedText"></div>
+    <div id="messageContainer"></div>
 
     <script>
-      const message =
-        "Todo el team malvado está orgulloso de ti Emily. Te amamos Emily 😈";
-      const container = document.getElementById("typedText");
+      const lines = [
+        "Todo el",
+        "team",
+        "malvado",
+        "está",
+        "orgulloso",
+        "de ti",
+        "Emily.",
+        "Te",
+        "amamos",
+        "Emily 😈",
+      ];
 
-      [...message].forEach((char, i) => {
-        const span = document.createElement("span");
-        span.textContent = char;
-        span.classList.add("char");
-        span.style.animationDelay = `${i * 0.05}s`;
-        container.appendChild(span);
+      const container = document.getElementById("messageContainer");
+      let delay = 0;
+
+      lines.forEach((line) => {
+        const lineDiv = document.createElement("div");
+        lineDiv.classList.add("line");
+
+        [...line].forEach((char, i) => {
+          const span = document.createElement("span");
+          span.textContent = char === " " ? "\u00A0" : char; // espacio no separable
+          span.classList.add("char");
+          span.style.animationDelay = `${delay}s`;
+          delay += 0.05;
+          lineDiv.appendChild(span);
+        });
+
+        container.appendChild(lineDiv);
       });
 
       // Corazones flotantes
