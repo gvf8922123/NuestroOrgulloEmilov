@@ -22,21 +22,24 @@
         justify-content: center;
         flex-direction: column;
         font-family: "Orbitron", sans-serif;
+        padding: 20px;
+        text-align: center;
       }
 
       .message {
-        font-size: 2.2em;
         color: #fff;
-        text-align: center;
-        max-width: 90%;
         text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff,
           0 0 30px #ff00ff;
+        font-size: clamp(1.2rem, 6vw, 2.2rem);
+        max-width: 100%;
+        width: 100%;
       }
 
       .typewriter {
+        display: inline-block;
         overflow: hidden;
-        white-space: nowrap;
         border-right: 2px solid #fff;
+        white-space: nowrap;
         animation: typing 8s steps(50, end), blink-caret 0.8s step-end infinite;
       }
 
@@ -60,7 +63,7 @@
       }
 
       .evil {
-        font-size: 2.5em;
+        font-size: clamp(2rem, 6vw, 3rem);
         margin-top: 20px;
         opacity: 0;
         animation: fadeIn 2s ease 8s forwards, pulse 1.5s infinite 10s;
@@ -127,8 +130,10 @@
     </style>
   </head>
   <body>
-    <div class="message typewriter">
-      Todo el team malvado está orgulloso de ti Emily
+    <div class="message">
+      <span class="typewriter">
+        Todo el team malvado está orgulloso de ti Emily
+      </span>
     </div>
     <div class="evil">😈</div>
 
